@@ -1,4 +1,10 @@
 import { Service } from "@/server";
+import { Metadata } from "next";
+import { title } from "process";
+
+export const metadata: Metadata = {
+  title: "Server Component"
+};
 
 async function ServerPage() {
   const data = await Service.getPosts();
