@@ -6,9 +6,9 @@ import { RiCloseLine, RiMenu2Line } from "react-icons/ri";
 function Navbar() {
   const [showMenu, setShowMenu] = useState(true);
   return (
-    <div>
+    <div className="bg-[#171d32]">
       {/* Title Upper Navbar  */}
-      <div className="container flex text-white justify-between p-4">
+      <div className="container flex text-white md:justify-between justify-center pt-4 gap-10">
         {/* Image section */}
         <div>Portfolio --Image</div>
         {/* Dark Switch */}
@@ -16,7 +16,7 @@ function Navbar() {
         {showMenu ? (
           <RiCloseLine
             size={30}
-            className="md:hidden absolute right-10 top-0 transition-all duration-300"
+            className="md:hidden absolute right-6 top-4 transition-all duration-300"
             onClick={() => {
               setShowMenu(!showMenu);
             }}
@@ -24,7 +24,10 @@ function Navbar() {
         ) : (
           <RiMenu2Line
             size={30}
-            className="md:hidden absolute right-10 top-5 transition-all duration-300"
+            className="md:hidden absolute right-6 top-4 transition-all duration-300"
+            onClick={() => {
+              setShowMenu(!showMenu);
+            }}
           />
         )}
       </div>

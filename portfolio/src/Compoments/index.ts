@@ -1,3 +1,3 @@
-import Navbar from "./Common/Navbar/navbar";
-
-export { Navbar };
+import Navbar from "./Common/Navbar/Navbar";
+import Home from "./Pages/Home/Home";
+export { Navbar, Home };
