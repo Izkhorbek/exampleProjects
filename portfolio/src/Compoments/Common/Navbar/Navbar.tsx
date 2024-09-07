@@ -40,11 +40,6 @@ function Navbar() {
           className=" mx-24 py-2 font-semibold px-2 rounded-xl bg-opacity-30 md:border-none 
       text-center md:bg-transparent md:static md:mx-0 md:flex gap-10"
         >
-          <Link to={"/"}>
-            <li className="text-md transition-all duration-300 md:mx-0 md:flex gap-6 p-1">
-              About
-            </li>
-          </Link>
           <Link to={"/about"}>
             <li className="text-md transition-all duration-300 md:mx-0 md:flex gap-6">
               About

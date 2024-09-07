@@ -4,7 +4,7 @@ import Home from "../Home/Home";
 
 function MainPage() {
   return (
-    <div className=" h-auto w-full overflow-hidden">
+    <div className="h-auto w-full overflow-hidden">
       <Navbar />
       <Home />
       <About />

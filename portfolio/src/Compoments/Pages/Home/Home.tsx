@@ -1,9 +1,11 @@
 import myImage from "./../../../../public/assets/image/myImage.jpg";
+import worldMapBlack from "./../../../../public/assets/world-map-black.jpeg";
+
 function Home() {
   return (
-    <div>
+    <div className="relative z-0">
       <div className="container">
-        <div className="h-[400px]  border border-red-500 content-center">
+        <div className="h-[600px]  content-center">
           <div className="grid md:grid-cols-2 grid-cols-1 justify-items-center content-around">
             <div>
               {/* ism and Description */}
@@ -41,6 +43,28 @@ function Home() {
             </div>
           </div>
         </div>
+      </div>
+      {/* backGround Image */}
+      <div className="absolute top-0 md:-top-40 lg:-top-40 right-0 -z-20">
+        <img
+          src={worldMapBlack}
+          alt="world map"
+          className="opacity-10 object-cover"
+        />
+      </div>
+      {/* Scroll */}
+      <div
+        className="w-absolute w-full flex justify-center 
+      items-center absolute bottom-0"
+      >
+        <a href="#about">
+          <div
+            className="w-[35px] h-[64px] rounded-3xl border-4
+          flex justify-center items-center p-2 border-slate-400"
+          >
+            <div className="w-2 h-3 rounded-full bg-slate-500 animate-bounce mt-2"></div>
+          </div>
+        </a>
       </div>
     </div>
   );
