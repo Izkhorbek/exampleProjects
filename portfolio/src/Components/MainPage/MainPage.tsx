@@ -1,7 +1,8 @@
-import Navbar from "../../Common/Navbar/Navbar";
+import Navbar from "../Common/Navbar/Navbar";
+import SkillGeometry from "../Common/SkillGeometry";
 import About from "../About/About";
 import Home from "../Home/Home";
-import Skills from "../Skills/Skills";
+import Skills from "../Pages/Skills/Skills";
 
 function MainPage() {
   return (
@@ -10,6 +11,7 @@ function MainPage() {
       <Home />
       <About />
       <Skills />
+      <SkillGeometry />
     </div>
   );
 }
