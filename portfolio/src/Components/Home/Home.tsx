@@ -1,5 +1,5 @@
-import myImage from "./../../../../public/assets/image/myImage.jpg";
-import worldMapBlack from "./../../../../public/assets/world-map-black.jpeg";
+import myImage from "./../../../public/assets/image/myImage.jpg";
+import worldMapBlack from "./../../../public/assets/world-map-black.jpeg";
 
 function Home() {
   return (
