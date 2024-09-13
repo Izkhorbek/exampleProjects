@@ -1,4 +1,4 @@
-import Navbar from "../../Common/Navbar/Navbar";
+import Navbar from "../Common/Navbar/Navbar";
 import About from "../About/About";
 import Home from "../Home/Home";
 import Skills from "../Skills/Skills";
