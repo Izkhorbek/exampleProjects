@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "footer-texture": "url('./public/assets/footer-pattern.jpg')"
+      }
+    },
     container: {
       center: true,
       padding: {

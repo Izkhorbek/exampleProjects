@@ -3,10 +3,25 @@
 @tailwind utilities;
 
 /* div {
-  border: 0.1px solid gray;
+  outline: 0.1px solid gray;
   margin: 0;
 } */
 
-* div {
-  outline: 1px solid gray;
+.job-skill__item {
+  @apply flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-500;
+}
+.text-title_name {
+  @apply text-[50px]
+        text-green-500
+        font-semibold
+        tracking-wider
+        uppercase
+        font-sans;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+section {
+  scroll-margin-top: 100px;
 }

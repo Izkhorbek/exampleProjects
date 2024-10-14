@@ -1,18 +1,13 @@
-import { Link } from "react-router-dom";
-import DarkMode from "./DarkMode";
 import { useState } from "react";
 import { RiCloseLine, RiMenu2Line } from "react-icons/ri";
-
+import { NavbarItems } from "../../../assets/data/NavbarItems";
 function Navbar() {
   const [showMenu, setShowMenu] = useState(true);
   return (
-    <div className="bg-[#171d32]">
+    <div className="bg-[#171d32] h-[50px] md:h-[70px] w-full fixed z-10">
       {/* Title Upper Navbar  */}
       <div className="container flex text-white md:justify-between justify-center pt-4 gap-10">
-        {/* Image section */}
-        <div>Portfolio --Image</div>
         {/* Dark Switch */}
-        <DarkMode />
         {showMenu ? (
           <RiCloseLine
             size={30}
@@ -38,28 +33,19 @@ function Navbar() {
       >
         <ul
           className=" mx-24 py-2 font-semibold px-2 rounded-xl bg-opacity-30 md:border-none 
-      text-center md:bg-transparent md:static md:mx-0 md:flex gap-10"
+      text-center md:bg-transparent md:static md:mx-0 md:flex gap-20 text-xl"
         >
-          <Link to={"/about"}>
-            <li className="text-md transition-all duration-300 md:mx-0 md:flex gap-6">
-              About
-            </li>
-          </Link>
-          <Link to={"/experience"}>
-            <li className="text-md transition-all duration-300 md:mx-0 md:flex gap-6">
-              Experience
-            </li>
-          </Link>
-          <Link to={"/projects"}>
-            <li className="text-md transition-all duration-300 md:mx-0 md:flex gap-6">
-              Projects
-            </li>
-          </Link>
-          <Link to={"/contact"}>
-            <li className="text-md transition-all duration-300 md:mx-0 md:flex gap-6">
-              Contact
-            </li>
-          </Link>
+          {NavbarItems.map((navItem, index) => (
+            <a
+              href={`#${navItem.link}`}
+              key={index}
+              className="hover:translate-x-1 transition-all duration-300 tracking-tight"
+            >
+              <li className="text-md transition-all duration-300 md:mx-0 md:flex gap-6">
+                {navItem.navName}
+              </li>
+            </a>
+          ))}
         </ul>
       </nav>
     </div>

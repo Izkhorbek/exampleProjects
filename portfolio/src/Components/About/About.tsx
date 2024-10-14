@@ -1,55 +1,21 @@
-import imgBackend from "./../../../public/assets/image/backend.png";
-import imgFrontend from "./../../../public/assets/image/frontend.png";
-import imgSoftware from "./../../../public/assets/image/software-development.png";
-import imgDatabase from "./../../../public/assets/image/database.png";
-import imgFullStack from "./../../../public/assets/image/fullstack.jpg";
-
-interface skillReview {
-  id: number;
-  image: string;
-  skillName: string;
-}
-const mySkillReview: skillReview[] = [
-  {
-    id: 0,
-    image: imgSoftware,
-    skillName: "Software Developer"
-  },
-  {
-    id: 1,
-    image: imgFrontend,
-    skillName: "Front-end Developer"
-  },
-  {
-    id: 2,
-    image: imgBackend,
-    skillName: "Back-end Developer"
-  },
-  {
-    id: 3,
-    image: imgFullStack,
-    skillName: "Full-stack developer"
-  },
-  {
-    id: 4,
-    image: imgDatabase,
-    skillName: "Database Management"
-  }
-];
-
+import mySkillReview from "./../../assets/data/SkillsReview";
+import { Courses, ICourse } from "../../assets/data/Courses";
+import { LiaUniversitySolid } from "react-icons/lia";
+import { SiUdemy } from "react-icons/si";
 function About() {
   return (
-    <div className="">
+    <section id="about">
       <div className="container space-y-2 pb-8">
         {/* Introduction */}
-        <h1 className="sm:text-[20px] text-[16px] uppercase tracking-wider font-semibold font-mono text-gray-500">
-          Introduction
-        </h1>
-        <h2 className="text-eerieBlack font-black md:text-[60px] sm:text-[48px] xs:text-[40px] text-[30px] font-poppins">
-          Overview.
+        <h1 className="text-title_name">About me</h1>
+        <h2 className="text-slate-600 font-black md:text-[40px] sm:text-[48px] xs:text-[40px] text-[30px] font-poppins">
+          Overview
         </h2>
         {/* Self-Introduction Text */}
-        <div className="text-gray-600  leading-loose tracking-normal font-semibold indent-6 text-justify px-2">
+        <div
+          data-aos="fade-right"
+          className="text-gray-600  leading-loose tracking-normal font-semibold indent-6 text-justify px-2"
+        >
           Skilled software developer with over three years of experience in both
           server-side and client-side desktop application and Web API
           development. Recently transitioned into web development, building real
@@ -61,6 +27,7 @@ function About() {
           dedicated team player with a love for technology and a knack for
           tackling complex challenges..
         </div>
+
         {/* Simple Experience */}
         <div
           className="flex flex-col
@@ -68,6 +35,8 @@ function About() {
         >
           {mySkillReview.map((item) => (
             <div
+              data-aos="fade-right"
+              data-aos-delay={`${150 * item.id}`}
               key={item.id}
               className="w-[180px] h-[200px] rounded-xl bg-slate-800
             text-white flex items-center justify-center shadow-2xl drop-shadow-2xl px-5"
@@ -88,8 +57,68 @@ function About() {
             </div>
           ))}
         </div>
+        <h1 className="text-slate-600 font-black md:text-[40px] sm:text-[48px] xs:text-[40px] text-[30px] font-poppins pt-4">
+          Education and Course
+        </h1>
+        <div className="grid md:grid-cols-2 grid-cols-1 pt-2">
+          <div className="flex flex-col font-semibold gap-3">
+            <div data-aos="fade-up" data-aos-delay="150">
+              <div className="flex items-center gap-2">
+                <LiaUniversitySolid className="size-6" />
+                <h1>
+                  Master's Degree in Electrical and Elech1onic Engineering
+                </h1>
+              </div>
+              <a
+                href="https://en.honam.ac.kr/"
+                target="_blank"
+                className="text-green-400"
+              >
+                Honam University in South Korea
+              </a>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="300">
+              <div className="flex items-center gap-2">
+                <LiaUniversitySolid className="size-6" />
+                <h1>Bachelor's Degree in Computer Science</h1>
+              </div>
+              <a
+                href="https://tuit.uz/"
+                target="_blank"
+                className="text-green-400"
+              >
+                TUIT in Uzbekistan
+              </a>
+            </div>
+            <div></div>
+          </div>
+          <div className="flex flex-col font-semibold gap-3">
+            {Courses.map((itemCourse: Partial<ICourse>) => (
+              <div
+                data-aos="fade-up"
+                data-aos-delay={`${150 * (itemCourse.id ?? 0)}`}
+                key={itemCourse.id}
+              >
+                <div className="flex items-center gap-2">
+                  <SiUdemy className="size-6" />
+                  <h1>
+                    {itemCourse.website}, &nbsp; date: {itemCourse.date}, &nbsp;
+                    hours: {itemCourse.length}
+                  </h1>
+                </div>
+                <a
+                  href={itemCourse.linkSertificate}
+                  target="_blank"
+                  className="text-green-400"
+                >
+                  {itemCourse.name}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 
