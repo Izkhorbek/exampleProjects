@@ -1,13 +1,11 @@
-import Head from "next/head";
+import Button from "@mui/material/Button";
+import Layout from "../layout/layout";
 
 const Page = () => {
   return (
-    <>
-      <Head>
-        <title>Sammi Blog</title>
-      </Head>
-      <h1>Salom, Next.js!</h1>;
-    </>
+    <Layout>
+      <Button variant="outlined">Hello</Button>
+    </Layout>
   );
 };
 

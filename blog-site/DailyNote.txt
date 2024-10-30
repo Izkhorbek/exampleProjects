@@ -1,0 +1,7 @@
+10-29:
+Set up Material UI to Next js for that:
+    1. Set up Font from Nextjs font optimization;
+    2. Config MaterialUI
+
+10-30: 
+Navbar Component and Hero Component
