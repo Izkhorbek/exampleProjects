@@ -1,10 +1,10 @@
-import Button from "@mui/material/Button";
 import Layout from "../layout/layout";
+import { Hero } from "../components";
 
 const Page = () => {
   return (
     <Layout>
-      <Button variant="outlined">Hello</Button>
+      <Hero />
     </Layout>
   );
 };

@@ -15,5 +15,7 @@
   "eslint.lintTask.enable": true,
   "typescript.suggest.autoImports": false,
   "javascript.suggest.autoImports": false,
-  "editor.codeLens": false
+  "editor.formatOnSave": true,
+  "editor.codeLens": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
