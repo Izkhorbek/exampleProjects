@@ -16,6 +16,8 @@ import {
 import { Menu, Adjust, Close } from "@mui/icons-material";
 import { useState } from "react";
 import { navItems } from "@/src/config/constant";
+import theme from "@/src/helpers/theme";
+
 interface Props {
   window?: () => Window;
 }
@@ -72,7 +74,13 @@ const Navbar = (props: Props) => {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav" sx={{ height: "8vh" }}>
+      <AppBar
+        component="nav"
+        sx={{
+          height: "8vh",
+          backgroundColor: theme.palette.grey[800],
+        }}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
