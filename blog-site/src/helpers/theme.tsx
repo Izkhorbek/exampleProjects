@@ -12,6 +12,7 @@ const roboto = Roboto({
 const theme = createTheme({
   cssVariables: true,
   palette: {
+    mode: "dark",
     primary: {
       main: "#556cd6",
     },
@@ -27,6 +28,15 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: roboto.style.fontFamily,
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
   },
 });
 

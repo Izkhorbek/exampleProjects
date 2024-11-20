@@ -3,7 +3,9 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image";
 import { format } from "date-fns";
-const Hero = () => {
+import { IHeroProps } from "./hero.props";
+import { IBlogs } from "@/src/interfaces/blogs.interface";
+const Hero = ({ blogs }: IHeroProps) => {
   const responsive = {
     desktop: {
       breakpoint: { max: 4000, min: 464 },
@@ -21,15 +23,21 @@ const Hero = () => {
         width: "100%",
         mt: "8vh",
         height: "70vh",
-        backgroundColor: "red",
         position: "relative",
       }}
     >
       <Carousel responsive={responsive} infinite={true}>
-        {carouselData.map((item) => (
-          <Box key={item.image}>
+        {blogs.map((item: IBlogs) => (
+          <Box key={item.image.url}>
             <Box sx={{ position: "relative", width: "100%", height: "70vh" }}>
-              <Image src={item.image} alt={item.title} fill />
+              <Image
+                src={item.image.url}
+                alt={item.title}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 50vw"
+                style={{ objectFit: "contain" }}
+                fill
+                priority
+              />
               <Box
                 sx={{
                   position: "absolute",
@@ -51,10 +59,31 @@ const Hero = () => {
                     left: "10%",
                   }}
                 >
-                  <Typography>{item.title}</Typography>
-                  <Typography variant="h5">{item.expert}</Typography>
+                  <Typography
+                    sx={{
+                      fontSize: {
+                        xs: "18px",
+                        md: "24px",
+                      },
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: {
+                        xs: "18px",
+                        md: "30px",
+                      },
+                    }}
+                  >
+                    {item.excerpt}
+                  </Typography>
                   <Box sx={{ display: "flex", gap: "10px", pt: "10px" }}>
-                    <Avatar alt={item.author.image} src={item.author.image} />
+                    <Avatar
+                      alt={item.author.name}
+                      src={item.author.avatar.url}
+                    />
                     <Box>
                       <Typography>{item.author.name}</Typography>
                       <Box>
@@ -73,25 +102,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-const carouselData = [
-  {
-    image: "https://free-images.com/lg/c1df/lilac_blossom_bloom_spring.jpg",
-    title: "Technical SEO with Hygraph",
-    expert:
-      "Get started with your SEO implementation when using a Headless CMS",
-    author: {
-      name: "Izhorbek Tursunov",
-      image: "https://free-images.com/lg/aa2a/oregon_beach_sand_rocks.jpg",
-    },
-  },
-  {
-    image: "https://free-images.com/lg/8aea/oregon_coast_beach.jpg",
-    title: "Union Types and Sortable Relations with Hygraph",
-    expert: "Learn more about Polymorphic and Sortable Relations with Hygraph",
-    author: {
-      name: "Izhorbek Tursunov",
-      image: "https://free-images.com/lg/e8da/oregon_coast_usa_shoreline.jpg",
-    },
-  },
-];

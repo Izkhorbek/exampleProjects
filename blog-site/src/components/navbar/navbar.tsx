@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { Menu, Adjust, Close } from "@mui/icons-material";
 import { useState } from "react";
-import { navItems } from "@/src/config/constant";
+import navItems from "@/src/config/constant";
 import theme from "@/src/helpers/theme";
 
 interface Props {

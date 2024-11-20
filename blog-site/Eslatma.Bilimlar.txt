@@ -1,0 +1,20 @@
+1. ServerSideRendering faqatgina pages or
+    app ichida ishga tushish kerak. 
+    
+2. Problem: 
+    hook.js:608 Image with src "https://free-images.com/lg/c1df/lilac_blossom_bloom_spring.jpg" has "fill" but is missing "sizes" prop. 
+    Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+3. I should use priority in <Image> 
+    You should use the priority property on any image detected as the Largest Contentful Paint (LCP) element. It may be appropriate to have multiple priority images, as different images may be the LCP element for different viewport sizes.
+
+4.  I should use 'sizes'.  A string, similar to a media query, that provides information about how wide the image will be at different breakpoints. The value of sizes will greatly affect performance for images using fill or which are styled to have a responsive size.
+    The sizes property serves two important purposes related to image performance:
+
+
+
+
+
+
+
+-> To Do List
+.env o'ratish kerak
