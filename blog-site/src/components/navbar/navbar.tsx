@@ -110,7 +110,11 @@ const Navbar = () => {
           </Box>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={item.label} sx={{ color: "#fff" }} href={item.route}>
+              <Button
+                key={item.label}
+                sx={{ color: "#fff" }}
+                onClick={() => router.push(item.route)}
+              >
                 {item.label}
               </Button>
             ))}

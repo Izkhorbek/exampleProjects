@@ -22,7 +22,6 @@ const Hero = ({ blogs }: IHeroProps) => {
     <Box
       sx={{
         width: "100%",
-        mt: "8vh",
         height: "70vh",
         position: "relative",
       }}

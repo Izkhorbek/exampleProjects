@@ -19,7 +19,6 @@ const CategoryPage = ({
           gap: "20px",
           padding: "20px",
           flexDirection: { xs: "column", sm: "row" },
-          pt: "10vh",
         }}
       >
         <SideBar latestBlogs={lastestBlogs} categories={categories} />

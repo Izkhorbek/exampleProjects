@@ -22,7 +22,6 @@ const DetailedBlogPage = ({
           gap: "20px",
           padding: "20px",
           flexDirection: { xs: "column", md: "row" },
-          pt: "10vh",
         }}
       >
         <Box sx={{ width: { xs: "100%", md: "70%" }, padding: "10px" }}>
