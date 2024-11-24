@@ -10,6 +10,9 @@
 4.  I should use 'sizes'.  A string, similar to a media query, that provides information about how wide the image will be at different breakpoints. The value of sizes will greatly affect performance for images using fill or which are styled to have a responsive size.
     The sizes property serves two important purposes related to image performance:
 
+5. Enhancing with Markdown Support
+    npm install react-markdown
+
 
 
 

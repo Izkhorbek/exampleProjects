@@ -6,10 +6,19 @@ import { format } from "date-fns";
 import { ISideBarProps } from "./sideBar.props";
 import { IBlogs } from "@/src/interfaces/blogs.interface";
 import { ICategory } from "@/src/interfaces/category.interface";
+import calcReadingTime from "@/src/lib/calcReadingTime";
+import { useRouter } from "next/router";
 const SideBar = ({ latestBlogs, categories }: ISideBarProps) => {
+  const router = useRouter();
   return (
-    <Box sx={{ width: { xs: "100%", sm: "30%" } }}>
-      <Box position={"sticky"} top={"10vh"} sx={{ transition: "all .3s ease" }}>
+    <Box sx={{ width: { xs: "100%", md: "30%" } }}>
+      <Box
+        sx={{
+          position: "sticky",
+          top: "10vh",
+        }}
+      >
+        {/* Latest Blogs section*/}
         <Box
           sx={{
             border: "1px solid gray",
@@ -20,12 +29,11 @@ const SideBar = ({ latestBlogs, categories }: ISideBarProps) => {
           <Typography variant="h5">Latest Blogs</Typography>
           <Box mt={"10px"}>
             {latestBlogs.map((item: IBlogs) => (
-              <Fragment key={item.image.url}>
+              <Fragment key={item.id}>
                 <Box
                   sx={{
                     display: "flex",
                     mt: "20px",
-
                     alignItems: "center",
                     gap: "20px",
                   }}
@@ -35,6 +43,9 @@ const SideBar = ({ latestBlogs, categories }: ISideBarProps) => {
                     alt={item.excerpt}
                     width={80}
                     height={80}
+                    style={{
+                      objectFit: "contain",
+                    }}
                   />
                   <Box color={"white"}>
                     <Button
@@ -42,6 +53,7 @@ const SideBar = ({ latestBlogs, categories }: ISideBarProps) => {
                         textAlign: "left",
                         color: "whitesmoke",
                       }}
+                      onClick={() => router.push(`/blog/${item.slug}`)}
                     >
                       <Typography fontSize={{ xs: "14px", md: "18px" }}>
                         {item.title}
@@ -57,12 +69,21 @@ const SideBar = ({ latestBlogs, categories }: ISideBarProps) => {
                       <Avatar
                         alt={item.author.name}
                         src={item.author.avatar.url}
+                        sx={{ width: 40, height: 40 }}
+                        imgProps={{
+                          style: {
+                            width: "40px",
+                            height: "40px",
+                            objectFit: "cover",
+                          },
+                        }}
                       />
                       <Box>
                         <Typography>{item.author.name}</Typography>
                         <Box>
                           {format(new Date(item.createdAt), "dd MMM yyyy")}{" "}
-                          &#x2022; 10min read
+                          &#x2022; &nbsp;{" "}
+                          {calcReadingTime(item.description.text)}min read
                         </Box>
                       </Box>
                     </Box>
@@ -73,6 +94,7 @@ const SideBar = ({ latestBlogs, categories }: ISideBarProps) => {
             ))}
           </Box>
         </Box>
+        {/* Category section*/}
         <Box
           sx={{
             border: "1px solid gray",
@@ -94,6 +116,7 @@ const SideBar = ({ latestBlogs, categories }: ISideBarProps) => {
               <Fragment key={item.slug}>
                 <Box sx={{ width: "100%" }}>
                   <Button
+                    onClick={() => router.push(`/category/${item.slug}`)}
                     fullWidth
                     sx={{
                       justifyContent: "flex-start",

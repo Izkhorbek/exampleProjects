@@ -5,6 +5,7 @@ import Image from "next/image";
 import { format } from "date-fns";
 import { IHeroProps } from "./hero.props";
 import { IBlogs } from "@/src/interfaces/blogs.interface";
+import calcReadingTime from "@/src/lib/calcReadingTime";
 const Hero = ({ blogs }: IHeroProps) => {
   const responsive = {
     desktop: {
@@ -28,15 +29,13 @@ const Hero = ({ blogs }: IHeroProps) => {
     >
       <Carousel responsive={responsive} infinite={true}>
         {blogs.map((item: IBlogs) => (
-          <Box key={item.image.url}>
+          <Box key={item.id}>
             <Box sx={{ position: "relative", width: "100%", height: "70vh" }}>
               <Image
                 src={item.image.url}
                 alt={item.title}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 50vw"
-                style={{ objectFit: "contain" }}
                 fill
-                priority
+                style={{ objectFit: "contain" }}
               />
               <Box
                 sx={{
@@ -83,11 +82,13 @@ const Hero = ({ blogs }: IHeroProps) => {
                     <Avatar
                       alt={item.author.name}
                       src={item.author.avatar.url}
+                      sx={{ width: 40, height: 40 }}
                     />
                     <Box>
                       <Typography>{item.author.name}</Typography>
                       <Box>
-                        {format(new Date(), "dd MMM yyyy")} &#x2022; 10min read
+                        {format(new Date(), "dd MMM yyyy")} &#x2022; &nbsp;{" "}
+                        {calcReadingTime(item.description.text)}min read
                       </Box>
                     </Box>
                   </Box>

@@ -1,21 +1,25 @@
-import Layout from "../layout/layout";
-import { Content, Hero, SideBar } from "../components";
+import { Content, SideBar } from "@/src/components";
+import { IBlogs } from "@/src/interfaces/blogs.interface";
+import { ICategory } from "@/src/interfaces/category.interface";
+import Layout from "@/src/layout/layout";
+import { BlogsService } from "@/src/services/blog.service";
 import { Box } from "@mui/material";
-import { BlogsService } from "../services/blog.service";
 import { GetServerSideProps } from "next";
-import { IBlogs } from "../interfaces/blogs.interface";
-import { ICategory } from "../interfaces/category.interface";
 
-const Page = ({ blogs, lastestBlogs, categories }: HomePageProps) => {
+const CategoryPage = ({
+  blogs,
+  lastestBlogs,
+  categories,
+}: CategoryPageProps) => {
   return (
     <Layout>
-      <Hero blogs={blogs.slice(0, 3)} />
       <Box
         sx={{
           display: "flex",
           gap: "20px",
           padding: "20px",
           flexDirection: { xs: "column", sm: "row" },
+          pt: "10vh",
         }}
       >
         <SideBar latestBlogs={lastestBlogs} categories={categories} />
@@ -25,12 +29,12 @@ const Page = ({ blogs, lastestBlogs, categories }: HomePageProps) => {
   );
 };
 
-export default Page;
+export default CategoryPage;
 
 export const getServerSideProps: GetServerSideProps<
-  HomePageProps
-> = async () => {
-  const blogs = await BlogsService.getAllBlogs();
+  CategoryPageProps
+> = async ({ query }) => {
+  const blogs = await BlogsService.getCategoryBlogs(query.slug as string);
   const lastestBlogs = await BlogsService.getLatestBlogs(2);
   const categories = await BlogsService.getCategories();
   return {
@@ -42,7 +46,7 @@ export const getServerSideProps: GetServerSideProps<
   };
 };
 
-interface HomePageProps {
+interface CategoryPageProps {
   blogs: IBlogs[];
   lastestBlogs: IBlogs[];
   categories: ICategory[];

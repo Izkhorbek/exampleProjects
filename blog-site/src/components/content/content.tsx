@@ -4,7 +4,10 @@ import { grey } from "@mui/material/colors";
 import { format } from "date-fns";
 import { IContentProps } from "./content.props";
 import { IBlogs } from "@/src/interfaces/blogs.interface";
+import calcReadingTime from "@/src/lib/calcReadingTime";
+import { useRouter } from "next/router";
 const Content = ({ blogs }: IContentProps) => {
+  const router = useRouter();
   return (
     <Box
       sx={{
@@ -13,17 +16,19 @@ const Content = ({ blogs }: IContentProps) => {
     >
       {blogs.map((item: IBlogs) => (
         <Box
-          key={item.title}
+          key={item.id}
+          onClick={() => router.push(`/blog/${item.slug}`)}
           width={"100%"}
           sx={{
             marginBottom: "20px",
             backgroundColor: grey[800],
             borderRadius: "8px",
             padding: "20px",
-            boxShadow: "0px 10px 10px -4px rgb(255,255,255, .7)",
+            boxShadow: "0px 10px 10px -4px rgb(255,255,255, .5)",
+            cursor: "pointer",
           }}
         >
-          <Box position={"relative"} sx={{ width: "100%", height: "40vh" }}>
+          <Box position={"relative"} sx={{ width: "100%", minHeight: "40vh" }}>
             <Image
               src={item.image.url}
               alt={item.title}
@@ -42,12 +47,19 @@ const Content = ({ blogs }: IContentProps) => {
           </Typography>
           <Divider />
           <Box sx={{ display: "flex", gap: "10px", pt: "10px" }}>
-            <Avatar alt={item.author.name} src={item.author.avatar.url} />
+            <Avatar
+              alt={item.author.name}
+              src={item.author.avatar.url}
+              sx={{ width: 40, height: 40 }}
+              imgProps={{
+                style: { width: "40px", height: "40px", objectFit: "cover" },
+              }}
+            />
             <Box>
               <Typography>{item.author.name}</Typography>
               <Box>
-                {format(new Date(item.createdAt), "dd MMM yyyy")} &#x2022; 10min
-                read
+                {format(new Date(item.createdAt), "dd MMM yyyy")} &#x2022;&nbsp;
+                {calcReadingTime(item.description.text)}min read
               </Box>
             </Box>
           </Box>

@@ -12,6 +12,7 @@ export const BlogsService = {
     const query = gql`
       query GetBlogs {
         blogs {
+          id
           excerpt
           slug
           title
@@ -29,6 +30,9 @@ export const BlogsService = {
             slug
           }
           createdAt
+          description {
+            text
+          }
         }
       }
     `;
@@ -43,6 +47,7 @@ export const BlogsService = {
     const query = gql`
       query getLastBlogs {
         blogs(last: ${values}) {
+          id
           excerpt
           slug
           title
@@ -50,12 +55,16 @@ export const BlogsService = {
             url
           }
           createdAt
+          description {
+            text
+          }
           author {
             name
             avatar {
               url
             }
           }
+            
         }
       }
     `;
@@ -80,5 +89,68 @@ export const BlogsService = {
     );
 
     return result.categories;
+  },
+
+  async getDetailedBlog(slug: string) {
+    const query = gql`
+      query getDetailedBlog($slug: String!) {
+        blog(where: { slug: $slug }) {
+          id
+          excerpt
+          slug
+          title
+          image {
+            url
+          }
+          createdAt
+          description {
+            text
+            html
+          }
+          author {
+            name
+            avatar {
+              url
+            }
+          }
+        }
+      }
+    `;
+
+    const result = await clientHygraph.request<{ blog: IBlogs }>(query, {
+      slug,
+    });
+    return result.blog;
+  },
+
+  async getCategoryBlogs(slug: string) {
+    const query = gql`
+      query getCategoryBlogs($slug: String!) {
+        blogs(where: { category: { slug_contains: $slug } }) {
+          id
+          excerpt
+          slug
+          title
+          image {
+            url
+          }
+          createdAt
+          description {
+            text
+          }
+          author {
+            name
+            avatar {
+              url
+            }
+          }
+        }
+      }
+    `;
+
+    const result = await clientHygraph.request<{ blogs: IBlogs[] }>(query, {
+      slug,
+    });
+    return result.blogs;
   },
 };

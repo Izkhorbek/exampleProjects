@@ -4,29 +4,26 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  CssBaseline,
-  Button,
   Drawer,
   Divider,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
+  Button,
 } from "@mui/material";
 import { Menu, Adjust, Close } from "@mui/icons-material";
 import { useState } from "react";
 import navItems from "@/src/config/constant";
 import theme from "@/src/helpers/theme";
+import { useRouter } from "next/router";
 
-interface Props {
-  window?: () => Window;
-}
 const drawerWidth = 240;
 
-const Navbar = (props: Props) => {
-  const { window } = props;
+const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const router = useRouter();
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -69,11 +66,8 @@ const Navbar = (props: Props) => {
     </Box>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
       <AppBar
         component="nav"
         sx={{
@@ -99,10 +93,20 @@ const Navbar = (props: Props) => {
               columnGap: "10px",
             }}
           >
-            <Adjust />
-            <Typography variant="h6" component="div">
-              Izhor
-            </Typography>
+            <Box
+              onClick={() => router.push("/")}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                cursor: "pointer",
+              }}
+            >
+              <Adjust />
+              <Typography variant="h6" component="div">
+                Izhor Blogs
+              </Typography>
+            </Box>
           </Box>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
@@ -115,7 +119,6 @@ const Navbar = (props: Props) => {
       </AppBar>
       <nav>
         <Drawer
-          container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}

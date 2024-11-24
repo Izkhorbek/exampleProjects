@@ -17,4 +17,8 @@ export interface IBlogs {
     slug: string;
   };
   createdAt: Date;
+  description: {
+    text: string;
+    html: string;
+  };
 }
