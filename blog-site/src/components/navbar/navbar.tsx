@@ -46,8 +46,18 @@ const Navbar = () => {
             columnGap: "5px",
           }}
         >
-          <Adjust />
-          <Typography variant="h6">Izhor</Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              cursor: "pointer",
+            }}
+            onClick={() => router.push("/")}
+          >
+            <Adjust />
+            <Typography variant="h6">Izhor blogs</Typography>
+          </Box>
         </Box>
         <IconButton>
           <Close />
@@ -57,7 +67,10 @@ const Navbar = () => {
       <List>
         {navItems.map((item) => (
           <ListItem key={item.label} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemButton
+              sx={{ textAlign: "center" }}
+              onClick={() => router.push(item.route)}
+            >
               <ListItemText primary={item.label} />
             </ListItemButton>
           </ListItem>
@@ -104,7 +117,7 @@ const Navbar = () => {
             >
               <Adjust />
               <Typography variant="h6" component="div">
-                Izhor Blogs
+                Izhor blogs
               </Typography>
             </Box>
           </Box>

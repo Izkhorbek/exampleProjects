@@ -5,23 +5,26 @@ import { BlogsService } from "../services/blog.service";
 import { GetServerSideProps } from "next";
 import { IBlogs } from "../interfaces/blogs.interface";
 import { ICategory } from "../interfaces/category.interface";
+import SEOConfig from "../layout/seo/seo";
 
 const Page = ({ blogs, lastestBlogs, categories }: HomePageProps) => {
   return (
-    <Layout>
-      <Hero blogs={blogs.slice(0, 3)} />
-      <Box
-        sx={{
-          display: "flex",
-          gap: "20px",
-          padding: "20px",
-          flexDirection: { xs: "column", sm: "row" },
-        }}
-      >
-        <SideBar latestBlogs={lastestBlogs} categories={categories} />
-        <Content blogs={blogs} />
-      </Box>
-    </Layout>
+    <SEOConfig>
+      <Layout>
+        <Hero blogs={blogs.slice(0, 3)} />
+        <Box
+          sx={{
+            display: "flex",
+            gap: "20px",
+            padding: "20px",
+            flexDirection: { xs: "column", sm: "row" },
+          }}
+        >
+          <SideBar latestBlogs={lastestBlogs} categories={categories} />
+          <Content blogs={blogs} />
+        </Box>
+      </Layout>
+    </SEOConfig>
   );
 };
 
