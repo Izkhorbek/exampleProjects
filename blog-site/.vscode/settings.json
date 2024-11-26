@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/fe5bccb5-6679-40fc-b6d8-1ebe65c431a0/resourceGroups/sammi-izhor-blogs/providers/Microsoft.Web/sites/izhor-blogs",
+  "appService.deploySubpath": "."
+}
